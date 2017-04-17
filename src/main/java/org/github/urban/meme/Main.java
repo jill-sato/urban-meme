@@ -17,7 +17,7 @@ import org.glassfish.jersey.moxy.json.MoxyJsonConfig;
 public class Main {
 
     public static final String WEB_ROOT = "/webroot/";
-    public static final String APP_PATH = "/urban-meme/";
+    public static final String APP_PATH = "/";
     public static final int PORT = 9998;
 
     public static HttpServer startServer(String webRootPath) {
@@ -35,15 +35,14 @@ public class Main {
 
         // add handler for static files
         config.addHttpHandler(
-                new CLStaticHttpHandler(
-                        Main.class.getClassLoader(), WEB_ROOT),
+                new CLStaticHttpHandler(Main.class.getClassLoader(), WEB_ROOT),
                         APP_PATH);
 
         // add handler for serving JAX-RS resources
         config.addHttpHandler(RuntimeDelegate.getInstance().createEndpoint(
                 createResourceConfig(),
                 GrizzlyHttpContainer.class),
-                "/urban-meme-api");
+                "/api");
 
         try {
             server.start();
