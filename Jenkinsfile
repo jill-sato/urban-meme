@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('init') {
       steps {
+        sh '''uname -ra'''
       }
     }
   }
