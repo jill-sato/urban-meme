@@ -3,7 +3,9 @@ pipeline {
   stages {
     stage('init') {
       steps {
-        sh '''uname -ra'''
+        withDockerContainer('ubuntu:latest') {
+            sh '''uname -ra'''
+        }
       }
     }
   }
