@@ -92,6 +92,7 @@
                         <retryPushTimeout>1000</retryPushTimeout>
                         <imageName>${docker.registry}/${project.artifactId}</imageName>
                         <forceTags>true</forceTags>
+                        <useConfigFile>true</useConfigFile>
                         <imageTags>
                             <imageTag>latest</imageTag>
                             <imageTag>${project.version}</imageTag>
@@ -156,6 +157,19 @@
             <build>
                 <plugins>
                     <plugin>
+                        <groupId>pl.project13.maven</groupId>
+                        <artifactId>git-commit-id-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>get-the-git-infos</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>revision</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
                         <groupId>com.spotify</groupId>
                         <artifactId>docker-maven-plugin</artifactId>
                         <executions>
@@ -163,6 +177,7 @@
                                 <id>zz-docker</id>
                                 <phase>package</phase>
                                 <goals>
+                                    <goal>build</goal>
                                     <goal>push</goal>
                                 </goals>
                             </execution>
