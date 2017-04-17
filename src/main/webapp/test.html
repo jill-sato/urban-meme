@@ -1,0 +1,389 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Urban Meme</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <body>
+        <header class="masthead">
+            <div class="container">
+                <div class="urban-meme">
+                    <span class="urban-meme-title">Urban Meme</span>
+                </div>
+                <!-- top level tab menu -->
+                <ul id="tab-menu" class="nav nav-tabs">
+                    <li id="generate-meme" class="active"><a href="#generate-meme">Generate a Meme</a></li>
+                    <li id="list-top-memes"><a href="#list-top-memes">List Top Memes</a></li>
+                </ul>
+
+                <!-- tab for "Generate Meme" -->
+                <div id="tab-generate-meme">
+                    <br>
+                    <blockquote>
+                        <p>Not for peons!</p>
+                    </blockquote>
+                    <div class="panel panel-default">
+                        <div class="panel-heading collapseable-panel-header" data-toggle="collapse" data-target="#enter-memeid-collapse">
+                            <ul class="nav nav-pills">
+                                <li>
+                                    <span class="btn toggle-btn glyphicon glyphicon-chevron-up btn-xs btn-info" ></span>
+                                </li>
+                                <li>Enter a Meme Id</li>
+                            </ul>
+                        </div>
+                        <div id="enter-dteid-collapse" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="input-group input-group-sm">
+                                            <input id="memeId" type="text" class="form-control" placeholder="Meme Id...">
+                                            <span id="btnGo" class="input-group-btn">
+                                                <button class="btn btn-primary" type="button">Go!</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div id="go-loading" class="col-lg-2 loading">
+                                    </div>
+                                </div>
+                                <div id="go-alert-wrapper">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- tab for "List Top Memes" -->
+                <div id="tab-list-top-memes" style="display:none">
+                    <br>
+                    <blockquote>
+                        <p>List the best rated memes.</p>
+                    </blockquote>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Enter a Meme Id</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div id="nav">
+            <div class="navbar navbar-static-top navbar-navbar-fixed-width" role="navigation">
+                <div class="container" >
+                    <div id="toolbar-wrapper" class="panel panel-default">
+                        <div class="panel-heading">
+                            <ul class="nav nav-pills toolbar-nav">
+                                <li>
+                                    <a href="#" id="toolbar-nav-home">
+                                        <span class="glyphicon glyphicon-home text-info"></span>
+                                    </a>
+                                </li>
+                                <li id="toolbar-nav-job-summary-collapse">
+                                    <a href="javascript:void(0);">Meme Summary</a>
+                                </li>
+                                <li class="active" id="toolbar-nav-jobdetails-collapse">
+                                    <a href="javascript:void(0);">Meme Details</a>
+                                </li>
+                                <li id="toolbar-nav-blocklist-collapse">
+                                    <a href="javascript:void(0);">List of Quotes</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="main" class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading collapseable-panel-header" data-toggle="collapse" data-target="#job-summary-collapse">
+                    <ul class="nav nav-pills">
+                        <li>
+                            <span class="btn toggle-btn glyphicon glyphicon-chevron-down btn-xs btn-info" ></span>
+                        </li>
+                        <li>Meme Summary</li>
+                    </ul>
+                </div>
+                <div id="job-summary-collapse" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <ul>
+                            <li><a href="#">Meme Attempts <span class="badge">31</span></a></li>
+                            <li><a href="#">Likes <span class="badge">1</span></a></li>
+                            <li><a href="#">Dislikes <span class="badge">4</span></a></li>
+                            <li><a href="#">Used <span class="badge">0</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="paneljobdetails" class="panel collapseable-panel panel-default" style="display:block">
+                <div class="panel-heading collapseable-panel-header" data-toggle="collapse" data-target="#jobdetails-collapse">
+                    <ul class="nav nav-pills">
+                        <li>
+                            <span class="btn toggle-btn glyphicon glyphicon-chevron-up btn-xs btn-info" ></span>
+                        </li>
+                        <li>Meme Details</li>
+                    </ul>
+                </div>
+
+                <div id="jobdetails-collapse" class="scrollbar-wrapper panel-collapse collapse in">
+                    <div class="scrollbar">
+                        <table id="tablejobdetails" class="table table-condensed table-striped my-table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Attribute Name</th>
+                                    <th>Attribute Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Genre</td>
+                                    <td>dark_humour</td>
+                                </tr>
+                                <tr>
+                                    <td>Situational</td>
+                                    <td>true</td>
+                                </tr>
+                                <tr>
+                                    <td>Certified</td>
+                                    <td>true</td>
+                                </tr>
+                                <tr>
+                                    <td><a id="jobparams-start" name="jobparams-start" class="invisible"></a>memeParams</td>
+                                    <td>
+                                        <table class="table table-condensed my-table-condensed">
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter Name</th>
+                                                    <th>Parameter Value</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>MEME_PARAM_X</td>
+                                                    <td>Only_For_Dummies</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>MEME_PARAM_Y</td>
+                                                    <td>Because_Im_Worth_It</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>VALID_UNTIL</td>
+                                                    <td>The_end_of_time</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr id="moreparams-line" class="collapse moreparams">
+                                                    <td style="padding-right:0px;">
+                                                        <div class="collapse moreparams">
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item">MEME_PARAM_Z</li>
+                                                                <li class="list-group-item">MEME_PARAM_A</li>
+                                                                <li class="list-group-item">MEME_PARAM_B</li>
+                                                                <li class="list-group-item">MEME_PARAM_C</li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                    <td style="padding-left:0px;">
+                                                        <div class="collapse moreparams">
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item">Not_Today</li>
+                                                                <li class="list-group-item">Asta_la_vista_Baby</li>
+                                                                <li class="list-group-item">Oops_I_Did_it_again</li>
+                                                                <li class="list-group-item">Kick_Me_Im_Famous</li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <a id="moreparams-btn" href="javascript:void(0);" class="btn btn-sm btn-info">More</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody> 
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="panelblocklist" class="panel panel-default" style="display:block">
+                <div class="panel-heading collapseable-panel-header" data-toggle="collapse" data-target="#blocklist-collapse">
+                    <ul class="nav nav-pills">
+                        <li>
+                            <span class="btn toggle-btn glyphicon glyphicon-chevron-down btn-xs btn-info" ></span>
+                        </li>
+                        <li>List of Quotes</li>
+                    </ul>
+                </div>
+                <div id="blocklist-collapse" class="scrollbar-wrapper panel-collapse collapse">
+                    <div class="scrollbar">
+                        <table id="tableblocklist" class="table table-condensed my-table-condensed table-sorteable">
+                            <thead>
+                                <tr>
+                                    <th><span>Author</span></th>
+                                    <th><span>Date</span></th>
+                                    <th><span>Quote</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="success">
+                                    <td>Daffy Duck</td>
+                                    <td>22:57:44 02/22/2017</td>
+                                    <td>Welcome to *my* world.</td>
+                                </tr>
+                                <tr class="success">
+                                    <td>Bugs Bunny</td>
+                                    <td>10:02:15 02/10/2007</td>
+                                    <td>OOH! Look at four-legged airplane!</td>
+                                </tr>
+                                <tr class="success">
+                                    <td>Pepe Le Pew</td>
+                                    <td>02:31:14 15/01/2000</td>
+                                    <td>Zee cabbage does not run away from zee corn-beef.</td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+        <script src="./js/jquery.history.js"></script>
+        <script src="./js/debugtool.js"></script>
+        <script>
+            // TODO put these in init()
+            $("#nav").affix({
+                offset: {
+                    top: $("header").height()
+                }
+            });
+            $("#tableblocklist").DataTable({
+                "ordering": true,
+                "paging": false,
+                "searching": false,
+                "info": false
+            });
+
+            // when a panel is shown
+            $(".panel-collapse").on('shown.bs.collapse', function () {
+                var id = $(this).attr("id");
+                var expanded = $(this).attr("aria-expanded");
+                // skip if the panel is now really shown
+                if (!(expanded === undefined || expanded === "true")) {
+                    return;
+                }
+
+                // mark the toolbar link active
+                var toolbarnav = $("#toolbar-nav-" + id);
+                if (toolbarnav.length > 0) {
+                    $(toolbarnav).addClass("active");
+                }
+
+                // change the chevron to down
+                var panelbar = $(this).parent().children(".collapseable-panel-header");
+                if (panelbar.length > 0) {
+                    var btn = panelbar.find("span");
+                    $(btn).toggleClass("glyphicon-chevron-down glyphicon-chevron-up");
+                }
+            });
+
+            // when a panel is hidden
+            $(".panel-collapse").on('hidden.bs.collapse', function () {
+                var id = $(this).attr("id");
+                // skip if the panel is now really hidden
+                var expanded = $(this).attr("aria-expanded");
+                if (expanded === undefined || expanded === "true") {
+                    return;
+                }
+                // mark the toolbar link inactive
+                var toolbarnav = $("#toolbar-nav-" + id);
+                if (toolbarnav.length > 0) {
+                    $(toolbarnav).removeClass("active");
+                }
+
+                // change the chevron to up
+                var panelbar = $(this).parent().children(".collapseable-panel-header");
+                if (panelbar.length > 0) {
+                    var btn = panelbar.find("span");
+                    $(btn).toggleClass("glyphicon-chevron-up glyphicon-chevron-down");
+                }
+            });
+
+            // when a toolbar-nav link is clicked
+            $(".toolbar-nav").find("a").click(function () {
+
+                // check if the click link is a toolbar-nav
+                var parent_id = $(this).parent().attr("id");
+                if (parent_id === undefined
+                        || parent_id.length === 0
+                        || !parent_id.startsWith("toolbar-nav")) {
+                    return;
+                }
+
+                // get the link target
+                var target_id = parent_id.substring(12);
+                var target = $('#' + target_id);
+
+                // if not active expand it
+                // and scroll to it after the animation
+                if (!$(this).parent().hasClass("active")) {
+                    target.collapse("show");
+                    target.on('shown.bs.collapse', function () {
+                        var expanded = $(this).attr("aria-expanded");
+                        if (!(expanded === undefined || expanded === "true")) {
+                            return;
+                        }
+
+                        // don't scroll the page
+                        // if the anchor is less than 58 px away
+                        var offset_top = $(target).parent().offset().top;
+                        var scroll_top = $(window).scrollTop();
+                        if ((offset_top > scroll_top
+                                && (offset_top - scroll_top > 58))
+                                || offset_top < scroll_top) {
+                            $(document.body).scrollTop(offset_top - 58);
+                        }
+                    });
+                }
+                // otherwise just scroll to it directly
+                else {
+                    // don't scroll the page
+                    // if the anchor is less than 58 px away
+                    var offset_top = $(target).parent().offset().top;
+                    var scroll_top = $(window).scrollTop();
+                    if ((offset_top > scroll_top
+                            && (offset_top - scroll_top > 58))
+                            || offset_top < scroll_top) {
+                        $(document.body).scrollTop(offset_top - 58);
+                    }
+                }
+            });
+
+            // the more/less button for job attributes/job params
+            $("#moreparams-btn").click(function (event) {
+                event.stopPropagation();
+                var btn = $(this);
+                if (btn.text() === "More") {
+                    btn.text("Less");
+                    $(".moreparams").collapse("show");
+                } else {
+                    btn.text("More");
+                    $(".moreparams").collapse("hide");
+                    $(".moreparams").on('hidden.bs.collapse', function () {
+                        $(document.body).scrollTop($('#jobparams-start').offset().top);
+                    });
+                }
+            });
+            $(init);
+        </script>
+    </body>
+</html>

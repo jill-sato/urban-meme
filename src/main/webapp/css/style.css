@@ -1,0 +1,137 @@
+@charset "UTF-8";
+
+body {
+  padding-top: 20px;
+}
+
+.urban-meme {
+  margin-bottom: 30px;
+}
+
+.urban-meme-title{
+  vertical-align:bottom ;
+  font-size:36px;
+  font-weight:500;
+  font-family: inherit;
+}
+
+.navbar-form input, .form-inline input {
+  width:auto;
+}
+
+#tablequotelist_wrapper thead tr :hover{
+    cursor: pointer;
+    cursor: hand;
+}
+#tablequotelist_wrapper .row{
+    margin-left:0px;
+    margin-right:0px;
+}
+#tablequotelist_wrapper .row div{
+    padding-left:0px;
+    padding-right:0px;
+}
+#nav.affix {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:10;
+}
+#nav.affix +div {
+    margin-top:60px;
+}
+
+#toolbar-wrapper {
+    line-height: 0px;
+    margin-bottom:0px;
+}
+
+#toolbar-wrapper a {
+    padding-right:2px;
+    margin-right:5px;
+    padding-left:2px;
+}
+
+#toolbar-nav-home {
+    padding-left: 0px;
+    padding-right: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size:1.3em;
+}
+
+.toggle-btn {
+  margin-right:20px;
+}
+.collapseable-panel {
+    line-height: 20px;
+    margin-bottom:0px;
+}
+.collapseable-panel-header{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.loading {
+  width: 32px;
+  height: 32px;
+  display: none;
+  background: url("../img/loading.gif") center no-repeat;
+  background-size: contain;
+}
+
+#moreparams-line td {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+#moreparams-line td div ul {
+    margin-bottom: 0px;
+}
+#moreparams-line td div ul li {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-left:0px;
+    border-right:0px;
+    line-height:20px;
+    padding-left:5px;
+    padding-right :5px;
+    padding-top:5px;
+    padding-bottom:5px;
+    white-space:nowrap;
+}
+#enter-memeid-collapse div div div {
+    width:200px;
+}
+#tablememedetails{
+    margin-bottom: 0px;
+    margin-top:10px;
+}
+#tablememedetails table {
+    margin-bottom: 0px;
+    margin-top:10px;
+}
+#tablequotelist {
+    margin-bottom: 0px;
+}
+.scrollbar{
+  position:relative;
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.scrollbar-wrapper {
+  width: 100%;
+  margin-top:10px;
+  margin: auto;
+}
+.my-table-condensed thead tr th span {
+    white-space:nowrap;
+}
+.my-table-condensed tr td {
+    padding-left: 20px;
+    white-space:nowrap;
+}

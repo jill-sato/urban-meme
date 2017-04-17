@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Urban Meme</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="urban-meme">
+                <span class="urban-meme-title">Urban Meme</span>
+            </div>
+
+            <ul id="tab-menu" class="nav nav-tabs">
+                <li id="generate-meme" class="active"><a href="#generate-meme">Generate a meme</a></li>
+                <li id="list-top-memes"><a href="#list-top-memes">List top memes</a></li>
+            </ul>
+
+            <!-- tab for "Debug Job" -->
+            <div id="tab-generate-meme">
+                <br>
+                <blockquote>
+                    <p>Not for peons!</p>
+                </blockquote>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Enter a memeid</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="input-group input-group-sm">
+                                    <input id="dteId" type="text" class="form-control" placeholder="Anything...">
+                                    <span id="btnGo" class="input-group-btn">
+                                        <button class="btn btn-primary" type="button">Go!</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div id="go-loading" class="col-lg-2 loading">
+                            </div>
+                        </div>
+                        <div id="go-alert-wrapper">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="panelmemedetails" class="panel panel-default" style="display:block">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Meme Details</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table id="tablememedetails" class="table">
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="panelquotelist" class="panel panel-default" style="display:none">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">List of quotes</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table id="tablequotelist" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Author</th>
+                                    <th>Date</th>
+                                    <th>Quote</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- tab for "Submit Job" -->
+            <div id="tab-list-top-memes" style="display:none">
+                <br>
+                <blockquote>
+                    <p>List the best rated memes.</p>
+                </blockquote>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Enter a Meme Id</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="./js/jquery.history.js"></script>
+        <script src="./js/debugtool.js"></script>
+        <script>
+            $(init);
+        </script>
+    </body>
+</html>
