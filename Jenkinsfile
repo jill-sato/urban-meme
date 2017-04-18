@@ -9,7 +9,10 @@ pipeline {
   stages {
     stage('init') {
       steps {
-        sh 'docker version;docker info'
+        sh '''docker version
+docker info
+echo -ne '\n\n\n\n' | aws configure
+eval `aws ecr get-login`'''
       }
     }
     stage('Build') {
