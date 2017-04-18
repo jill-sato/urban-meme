@@ -13,7 +13,11 @@ pipeline {
         sh '''curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
 unzip -o awscli-bundle.zip
 ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-echo -ne "\n\n\n\n" | aws configure
+access_key=`cat ~/.aws/credentials | grep "aws_access_key_id =" | cut -d = -f2 | tr -d ' '`
+secret_key=`cat ~/.aws/credentials | grep "aws_secret_access_key =" | cut -d = -f2 | tr -d ' '`
+aws configure set default.region us-west-2
+aws configure set aws_access_key_id ${access_key}
+aws configure set aws_secret_access_key ${secret_key}
 eval `aws ecr get-login`'''
       }
     }
