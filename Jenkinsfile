@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      args '-u 0:0 -v /usr/bin/docker:/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/jenkins/.docker/config.json:/root/.docker/config.json'
+      args '-u 0:0 -v /usr/bin/docker:/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/jenkins/.docker:/root/.docker -v /usr/lib/python2.7:/usr/lib/python2.7 -v /usr/bin/aws:/bin/aws -v /var/lib/jenkins/.aws:/root/.aws'
       image 'maven:3.3.9-jdk-8'
     }
     
@@ -17,7 +17,7 @@ eval `aws ecr get-login`'''
     }
     stage('Build') {
       steps {
-        sh 'echo $HOME ; cd ; pwd ; ls -la ; cd $WORKSPACE ; mvn package -Pdocker-push -Ddocker.registry="780245226102.dkr.ecr.us-west-2.amazonaws.com"'
+        sh 'mvn package -Pdocker-push -Ddocker.registry="780245226102.dkr.ecr.us-west-2.amazonaws.com"'
       }
     }
   }
