@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh './mvnw package -Pdocker-push -Ddocker.registry="780245226102.dkr.ecr.us-west-2.amazonaws.com"'
+        sh 'mvn package -Pdocker-push -Ddocker.registry="780245226102.dkr.ecr.us-west-2.amazonaws.com"'
       }
     }
   }
