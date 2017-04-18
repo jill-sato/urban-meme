@@ -1,5 +1,4 @@
 pipeline {
-  def dockerPath = sh(script: 'which docker', returnStdout: true)
   agent {
     docker {
       image 'ubuntu:latest'
