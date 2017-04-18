@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('init') {
       steps {
-        sh 'cat /etc/debian_version; hostname ; uname -ra ; docker info'
+        sh 'cat /etc/debian_version; hostname ; uname -ra ; sleep 300 ; docker info'
       }
     }
   }
