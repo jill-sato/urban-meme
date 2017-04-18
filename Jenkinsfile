@@ -8,11 +8,7 @@ pipeline {
   stages {
     stage('init') {
       steps {
-        sh '''groupadd -g497 jenkins
-groupadd -g496 docker
-useradd -s/bin/bash -u498 -g497 jenkins
-usermod -aG docker jenkins
-su - jenkins
+        sh '''docker version
 docker info'''
       }
     }
