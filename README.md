@@ -77,3 +77,6 @@ Notes for pipeline
 - test docker cli
 
 > docker info
+
+
+https://jenkins.io/doc/book/pipeline/jenkinsfile/
