@@ -11,7 +11,7 @@ pipeline {
         sh 'docker version;docker info'
 
         sh '''curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-unzip awscli-bundle.zip
+unzip -o awscli-bundle.zip
 ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 echo -ne '\n\n\n\n' | aws configure
 eval `aws ecr get-login`'''
