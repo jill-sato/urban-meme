@@ -9,7 +9,7 @@ pipeline {
         }
       }
       steps {
-        sh 'uname -ra'
+        sh 'cat /etc/debian_version; hostname ; uname -ra'
       }
     }
   }
