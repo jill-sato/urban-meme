@@ -3,7 +3,7 @@ pipeline {
   agent {
     docker {
       image 'ubuntu:latest'
-      args  '-v '+dockerPath+':/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -v ~/.docker/config.json:/root/.docker/config.json'
+      args  '-v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -v ~/.docker/config.json:/root/.docker/config.json'
     }
   }
   stages {
