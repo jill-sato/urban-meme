@@ -1,16 +1,14 @@
 pipeline {
   agent {
     docker {
-      args '-v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/jenkins/ecr_docker_login:/bin/ecr_docker_login'
+      args '-u 0:0 -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/jenkins/docker_init:/bin/docker_init'
       image 'jillsato/cbe:latest'
     }
   }
   stages {
     stage('init') {
       steps {
-        sh 'sleep 300'
-        sh 'docker version ; docker info'
-        sh '/bin/ecr_docker_login'
+        sh '/bin/docker_init'
       }
     }
     stage('Build') {
