@@ -12,7 +12,7 @@
         <jersey.version>2.13</jersey.version>
         <mainClass>org.github.urban.meme.Main</mainClass>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <dependency.classpath.prefix>dependency</dependency.classpath.prefix>
+        <dependency.classpath.prefix>lib</dependency.classpath.prefix>
         <copied.dependencies.dir>${project.build.directory}/${dependency.classpath.prefix}</copied.dependencies.dir>
         <docker.registry>localhost</docker.registry>
     </properties>
@@ -106,9 +106,9 @@
                                 <include>${project.build.finalName}.jar</include>
                             </resource>
                             <resource>
-                                <targetPath>/dependency</targetPath>d
+                                <targetPath>/lib</targetPath>d
                                 <directory>${project.build.directory}</directory>
-                                <include>dependency/*.jar</include>
+                                <include>lib/*.jar</include>
                             </resource>
                         </resources>
                     </configuration>

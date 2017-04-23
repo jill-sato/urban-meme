@@ -1,8 +1,13 @@
-// use regular java plugin
-// it provides built-in tasks for java
-// 'compileJava' 'JavaExec' 'jar'
-// see https://docs.gradle.org/current/userguide/java_plugin.html
-apply plugin: 'java'
+plugins {
+    // use regular java plugin
+    // it provides built-in tasks for java
+    // 'compileJava' 'JavaExec' 'jar'
+    // see https://docs.gradle.org/current/userguide/java_plugin.html
+    id 'java'
+
+    // add a docker plugin
+    id 'com.palantir.docker' version '0.13.0'
+}
 
 // force use of maven repositories
 repositories {
@@ -57,6 +62,7 @@ task copyLibs(type: Copy) {
   into 'build/libs/lib'
 }
 // add it as a dependency of built-in task 'assemble'
+copyLibs.dependsOn jar
 assemble.dependsOn copyLibs
 
 
@@ -79,3 +85,12 @@ task run(type:JavaExec) {
 }
 // add it as a dependency of compileJava
 run.dependsOn compileJava
+
+def dockerRegistry = "localhost"
+docker {
+    name dockerRegistry+'/urban-meme'
+    files 'docker/entrypoint.sh'
+    copySpec.from("build/libs").into(".")
+    dockerfile file('docker/Dockerfile')
+}
+docker.dependsOn assemble
