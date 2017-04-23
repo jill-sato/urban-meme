@@ -86,9 +86,12 @@ task run(type:JavaExec) {
 // add it as a dependency of compileJava
 run.dependsOn compileJava
 
-def dockerRegistry = "localhost"
 docker {
-    name dockerRegistry+'/urban-meme'
+    if(project.hasProperty("dockerRegistry")) {
+        name dockerRegistry+'/urban-meme'
+    } else {
+      name "urban-meme"
+    }
     files 'docker/entrypoint.sh'
     copySpec.from("build/libs").into(".")
     dockerfile file('docker/Dockerfile')
