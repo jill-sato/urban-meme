@@ -1,0 +1,39 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compile 'org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.13'
+    compile 'org.glassfish.jersey.media:jersey-media-moxy:2.13'
+    compileOnly 'javax:javaee-web-api:7.0'
+
+    testCompile 'junit:junit:4.12'
+}
+
+task copyWebappResources(type: Copy) {
+    from 'src/main/webapp'
+    into 'build/webroot'
+}
+
+task copyLibs(type: Copy) {
+  from configurations.runtime
+  into 'build/libs/lib'
+}
+
+jar {
+  manifest {
+    attributes ('Main-Class': 'org.github.urban.meme.Main',
+                'Class-Path': configurations.runtime.files.collect { "lib/$it.name" }.join(' ')
+               )
+  }
+  from('build') {
+   include 'webroot/**/*'
+  }
+}
+
+jar.dependsOn copyWebappResources
+copyLibs.dependsOn jar
+assemble.dependsOn copyLibs
