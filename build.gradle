@@ -1,6 +1,7 @@
 // use regular java plugin
 // it provides built-in tasks for java
 // 'compileJava' 'JavaExec' 'jar'
+// see https://docs.gradle.org/current/userguide/java_plugin.html
 apply plugin: 'java'
 
 // force use of maven repositories
