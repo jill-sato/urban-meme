@@ -1,39 +1,80 @@
+// use regular java plugin
+// it provides built-in tasks for java
+// 'compileJava' 'JavaExec' 'jar'
 apply plugin: 'java'
 
+// force use of maven repositories
 repositories {
-    mavenCentral()
-    mavenLocal()
+    mavenCentral() // repo1.maven.org/maven2
+    mavenLocal() // .m2
 }
 
 dependencies {
+    // use for both compile and runtime (runtime inherits compile)
+    // these dependencies and their transitive dependencies
+    // will be copied to build/libs/lib
+    // and added to the classpath when using "gradle run"
     compile 'org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.13'
     compile 'org.glassfish.jersey.media:jersey-media-moxy:2.13'
+
+    // not added to the runtime classpath
+    // i.e won't be copied into build/libs/lib
+    // and won't be added in the classpath when using "gradle run"
     compileOnly 'javax:javaee-web-api:7.0'
 
     testCompile 'junit:junit:4.12'
 }
 
+// define a custom task to copy src/main/webapp to build/webroot
+// uses built-in Copy
 task copyWebappResources(type: Copy) {
     from 'src/main/webapp'
     into 'build/webroot'
 }
+// add it as a dependency of built-in task 'processResources'
+// so that we can define the resources below
+processResources.dependsOn copyWebappResources
 
+
+// define build/webroot as resources in the project
+// this will implicitly add webroot to the jar
+// and also to the runtime classpath for JavaExec ("run" task)
+sourceSets {
+    main {
+        resources {
+            srcDirs "build"
+            include "webroot/**"
+        }
+    }
+}
+
+// define a custom task to copy all dependencies in the runtime classpath
+// into build/libs/lib
+// uses built-in Copy
 task copyLibs(type: Copy) {
   from configurations.runtime
   into 'build/libs/lib'
 }
+// add it as a dependency of built-in task 'assemble'
+assemble.dependsOn copyLibs
 
+
+// default jar configuration
+// set the main classpath
+// add each jar under build/libs/lib into the classpath
 jar {
   manifest {
     attributes ('Main-Class': 'org.github.urban.meme.Main',
                 'Class-Path': configurations.runtime.files.collect { "lib/$it.name" }.join(' ')
                )
-  }
-  from('build') {
-   include 'webroot/**/*'
-  }
+  } 
 }
 
-jar.dependsOn copyWebappResources
-copyLibs.dependsOn jar
-assemble.dependsOn copyLibs
+// define a custom task to run the app from command line
+// uses task type JavaExec from java plugin
+task run(type:JavaExec) {
+   main = 'org.github.urban.meme.Main'
+   classpath = sourceSets.main.runtimeClasspath
+}
+// add it as a dependency of compileJava
+run.dependsOn compileJava
