@@ -86,6 +86,8 @@ task run(type:JavaExec) {
 // add it as a dependency of compileJava
 run.dependsOn compileJava
 
+# pass -PdockerRegistry to tag the image for a specific docker registry
+# otherwise just image is just a default name and docker tag a name later.
 docker {
     if(project.hasProperty("dockerRegistry")) {
         name dockerRegistry+'/urban-meme'
