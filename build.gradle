@@ -86,8 +86,8 @@ task run(type:JavaExec) {
 // add it as a dependency of compileJava
 run.dependsOn compileJava
 
-# pass -PdockerRegistry to tag the image for a specific docker registry
-# otherwise just image is just a default name and docker tag a name later.
+// pass -PdockerRegistry to tag the image for a specific docker registry
+// otherwise just image is just a default name and docker tag a name later.
 docker {
     if(project.hasProperty("dockerRegistry")) {
         name dockerRegistry+'/urban-meme'
@@ -100,11 +100,11 @@ docker {
 }
 docker.dependsOn assemble
 
-# Build docker image
-# % gradle clean docker
+// Build docker image
+// % gradle clean docker
 
-# push docker image to aws docker registry.
-# add awk to path; authenticate to aws:
-# %  export PATH=~/Library/Python/3.5/bin/:$PATH; aws ecr get-login --region us-west-2; run output of command
-# push docker image
-# % gradle clean dockerPush -PdockerRegistry="780245226102.dkr.ecr.us-west-2.amazonaws.com"
+// push docker image to aws docker registry.
+// add awk to path; authenticate to aws:
+// %  export PATH=~/Library/Python/3.5/bin/:$PATH; aws ecr get-login --region us-west-2; run output of command
+// push docker image
+// % gradle clean dockerPush -PdockerRegistry="780245226102.dkr.ecr.us-west-2.amazonaws.com"

@@ -9,7 +9,9 @@
 FROM java:8
 
 RUN mkdir /app
+# urban-meme.jar is already built.
 COPY urban-meme.jar /app/
+# copy lib directory with all the dependencies
 COPY lib /app/
 COPY entrypoint.sh /app/
 RUN chmod +x /app/entrypoint.sh
