@@ -14,6 +14,15 @@ Commands
 ### Build docker image and push docker image to registry
 > mvn clean package -Pdocker-push -Ddocker.registry="780245226102.dkr.ecr.us-west-2.amazonaws.com"
 
+### Build docker image with Gradle
+> gradle clean docker
+
+### Push docker image to aws docker registry.
+- add aws to path; authenticate to aws:
+> export PATH=~/Library/Python/3.5/bin/:$PATH; aws ecr get-login --region us-west-2; run output of command
+- push docker image
+> gradle clean dockerPush -PdockerRegistry="780245226102.dkr.ecr.us-west-2.amazonaws.com"
+
 ### Run app with local docker image 
 
 - -d option makes the container run in the bg

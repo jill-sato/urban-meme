@@ -104,7 +104,7 @@ docker.dependsOn assemble
 // % gradle clean docker
 
 // push docker image to aws docker registry.
-// add awk to path; authenticate to aws:
+// add aws to path; authenticate to aws:
 // %  export PATH=~/Library/Python/3.5/bin/:$PATH; aws ecr get-login --region us-west-2; run output of command
 // push docker image
 // % gradle clean dockerPush -PdockerRegistry="780245226102.dkr.ecr.us-west-2.amazonaws.com"
