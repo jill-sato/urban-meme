@@ -9,6 +9,9 @@ plugins {
     id 'com.palantir.docker' version '0.13.0'
 }
 
+group = "io.github.jill-sato"
+version = "1.0.0-SNAPSHOT"
+
 // force use of maven repositories
 repositories {
     mavenCentral() // repo1.maven.org/maven2
